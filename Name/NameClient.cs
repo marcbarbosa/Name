@@ -10,14 +10,22 @@ namespace Name
 
         public NameClient()
         {
+            JsonServiceClient.HttpWebRequestFilter = req => req.Headers.Add("Api-Username", "hospedix-ote");
+            JsonServiceClient.HttpWebRequestFilter = req => req.Headers.Add("Api-Token", "fc5e15f08742ed8716e0c4fcef8f5fec9182f5e6");
+            
             _client = new JsonServiceClient("https://api.dev.name.com/api");
 
-            //_client.LocalHttpWebRequestFilter = req => req.Headers.Add("Api-Username", "hospedix");
-            //_client.LocalHttpWebRequestFilter = req => req.Headers.Add("Api-Token", "token_temp");
+            //_client.LocalHttpWebRequestFilter = req =>
+            //{
+            //    foreach (var key in req.Headers.Keys)
+            //    {
+            //        Console.WriteLine(key);
+            //    }
+            //};
 
-            //var responseLogin = _client.Post<ResponseLogin>("/login", new LoginRequest { username = "hospedix", api_token = "token_temp" });
+            var responseLogin = _client.Post<LoginResponse>("/login", new LoginRequest { username = "hospedix-ote", api_token = "fc5e15f08742ed8716e0c4fcef8f5fec9182f5e6" });
 
-            var responseHello = _client.Get<HelloResponse>(Method.Hello);
+            //var responseHello = _client.Get<HelloResponse>(Method.Hello);
         }
 
         public HelloResponse Hello()

@@ -13,6 +13,8 @@ namespace Name.Console
             var client = new NameClient();
 
             var response = client.Hello();
+
+            System.Console.ReadKey();
         }
     }
 }
